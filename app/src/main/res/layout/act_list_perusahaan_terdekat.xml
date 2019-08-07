@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.exomatik.carijasa.Pekerja.DetailJasaAct">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/border_box_gradient_blue">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_back_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_toRightOf="@+id/back"
+                android:gravity="center_vertical"
+                android:text="List Perusahaan"
+                android:textColor="@color/putih"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:id="@+id/text_title_anggota"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/width70"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_small"
+                android:src="@drawable/logo2"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@+id/customToolbar"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/putih"
+            android:layout_below="@+id/map"
+            android:padding="@dimen/margin_standard"
+            android:id="@+id/rl_bottom"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_a5"
+                android:textColor="@color/hitam"
+                android:textSize="15sp"
+                android:text="List Perusahaan : "
+                android:layout_marginTop="@dimen/margin_small"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_a5"
+                android:id="@+id/rc_perusahaan"
+                android:layout_marginTop="@dimen/margin_small"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

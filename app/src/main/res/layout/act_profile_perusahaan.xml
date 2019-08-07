@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/putihGelap6"
+    tools:context="com.exomatik.carijasa.Perusahaan.ProfilePerusahaanAct">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_box_gradient_blue"
+            android:padding="@dimen/margin_standard">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user"
+                android:layout_width="@dimen/width100"
+                android:layout_height="@dimen/width100"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo2" />
+
+            <ImageButton
+                android:id="@+id/btn_logout"
+                android:layout_width="@dimen/width40"
+                android:layout_height="@dimen/width40"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:layout_toLeftOf="@+id/btn_edit"
+                android:background="@drawable/btn_transparent_circle_gray"
+                android:scaleType="centerCrop"
+                android:src="@drawable/log_out" />
+
+            <ImageButton
+                android:id="@+id/btn_edit"
+                android:layout_width="@dimen/width40"
+                android:layout_height="@dimen/width40"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:background="@drawable/btn_transparent_circle_gray"
+                android:src="@drawable/ic_edit_white" />
+
+            <TextView
+                android:id="@+id/text_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_user"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_small"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/putih"
+                android:textSize="@dimen/title_font"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_nama"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/width40"
+                android:layout_marginTop="@dimen/margin_small"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/margin_big"
+                    android:layout_height="@dimen/margin_big"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:src="@drawable/ic_location_white" />
+
+                <TextView
+                    android:id="@+id/text_alamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/putihGelap1"
+                    android:textSize="@dimen/text_font" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_top"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginRight="@dimen/margin_big"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/border_rl_white"
+            android:elevation="@dimen/margin_standard"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_standard">
+
+            <TextView
+                android:id="@+id/text_kontak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/text_kontak_company"
+                android:textColor="@color/hitam"
+                android:textSize="@dimen/title_font"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/text_kontak"
+                android:layout_marginTop="@dimen/margin_standard"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_email_blue" />
+
+                    <TextView
+                        android:id="@+id/text_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_standard"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/putihGelap3"
+                        android:textSize="@dimen/text_font" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_phone_blue" />
+
+                    <TextView
+                        android:id="@+id/text_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_standard"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/putihGelap3"
+                        android:textSize="@dimen/text_font" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_jasa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_center"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_big"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/jasa_ditawarkan"
+            android:textColor="@color/hitamGray"
+            android:textSize="@dimen/title_font"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_jasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_jasa"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginRight="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_standard">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anda belum mempunyai jasa untuk ditawarkan"
+            android:textColor="@color/hitam"
+            android:textSize="@dimen/text_font"
+            android:fontFamily="@font/open_sans"
+            android:id="@+id/text_nothing"
+            android:layout_below="@+id/text_jasa"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_tambah"
+            android:layout_marginRight="@dimen/width30"
+            android:layout_marginLeft="@dimen/width30"
+            android:layout_marginBottom="@dimen/margin_standard"
+            android:text="@string/text_tambah_jasa"
+            android:textColor="@color/putih"
+            android:textSize="@dimen/title_font"
+            android:fontFamily="@font/open_sans"
+            android:background="@drawable/btn_gradient_blue_rounded"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

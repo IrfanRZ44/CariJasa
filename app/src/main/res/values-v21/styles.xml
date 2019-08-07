@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CustomBlue.NoActionBar" parent="Theme.Design.NoActionBar">
+        <item name="android:statusBarColor">@color/blue2</item>
+        <item name="android:navigationBarColor">@color/blue2</item>
+        <item name="colorAccent">@color/blue2</item>
+        <item name="android:colorForeground">@android:color/black</item>
+    </style>
+</resources>

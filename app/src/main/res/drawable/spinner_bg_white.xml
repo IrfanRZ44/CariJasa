@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+
+            <item>
+                <shape>
+                    <gradient
+                        android:endColor="@color/blue2"
+                        android:startColor="@color/blue3"
+                        android:type="linear" />
+                    <corners android:radius="@dimen/margin_small" />
+
+                    <padding android:bottom="0dp"
+                        android:left="3dp"
+                        android:right="3dp"
+                        android:top="1dp"
+                        />
+                </shape>
+            </item>
+
+            <item>
+                <bitmap android:gravity="right"
+                    android:src="@drawable/ic_drop_putih"
+                    />
+            </item>
+
+        </layer-list>
+
+    </item>
+
+</selector>

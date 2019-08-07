@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "691803281911",
+    "firebase_url": "https://cari-jasa.firebaseio.com",
+    "project_id": "cari-jasa",
+    "storage_bucket": "cari-jasa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691803281911:android:d0c01423bc3eba3f",
+        "android_client_info": {
+          "package_name": "com.exomatik.carijasa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691803281911-blrojs06aenasnlk2g7ksd623qu1r975.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exomatik.carijasa",
+            "certificate_hash": "6d09a41daf8e3ea3540b260ae1f4878b04cd8166"
+          }
+        },
+        {
+          "client_id": "691803281911-46e5t52nl3vlokjun0dn5g61eubbvslq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_KDBbQHLwLrDxdzhok2YoCJJ7ZNopYS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691803281911-46e5t52nl3vlokjun0dn5g61eubbvslq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.exomatik.carijasa.Pekerja.MainPekerjaAct"
+    android:background="@color/putihGelap6"
+    >
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_box_gradient_blue"
+                android:padding="@dimen/margin_standard">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="@dimen/width100"
+                    android:layout_height="@dimen/width100"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/logo2" />
+
+                <ImageButton
+                    android:id="@+id/btn_logout"
+                    android:layout_width="@dimen/width40"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginRight="@dimen/margin_standard"
+                    android:layout_marginTop="@dimen/margin_standard"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_transparent_circle_gray"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/log_out" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/rl_nama"
+                    android:layout_below="@+id/img_user"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/putih"
+                        android:textSize="@dimen/title_font"
+                        android:text="Halo, "
+                        />
+                    <TextView
+                        android:id="@+id/text_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/putih"
+                        android:textSize="@dimen/title_font"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_nama"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/width40"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/margin_big"
+                        android:layout_height="@dimen/margin_big"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:src="@drawable/ic_email_white" />
+
+                    <TextView
+                        android:id="@+id/text_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/putihGelap1"
+                        android:textSize="@dimen/text_font" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_top"
+                android:layout_marginLeft="@dimen/margin_big"
+                android:layout_marginRight="@dimen/margin_big"
+                android:layout_marginTop="-30dp"
+                android:layout_marginBottom="@dimen/margin_standard"
+                android:background="@drawable/border_rl_white"
+                android:elevation="@dimen/margin_standard"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_standard">
+
+                <TextView
+                    android:id="@+id/text_kontak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Menu"
+                    android:textColor="@color/hitam"
+                    android:textSize="@dimen/title_font"
+                    android:textStyle="bold" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_menu"
+                    android:layout_below="@+id/text_kontak"
+                    style="@style/MyCustomTabLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed">
+                </com.google.android.material.tabs.TabLayout>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_menu"
+        android:layout_below="@+id/scroll"
+        >
+    </androidx.viewpager.widget.ViewPager>
+</RelativeLayout>
