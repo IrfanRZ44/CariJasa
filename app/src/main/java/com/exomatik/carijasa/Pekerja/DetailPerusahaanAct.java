@@ -2,9 +2,11 @@ package com.exomatik.carijasa.Pekerja;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.view.View;
+import android.widget.Toast;
 
 import com.exomatik.carijasa.Featured.ItemClickSupport;
 import com.exomatik.carijasa.Model.ModelJasa;
@@ -19,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -27,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DetailPerusahaanAct extends ProfilePerusahaanAct{
     public static ModelUser detailPerusahaan;
+    private static final int REQUEST_PHONE_CALL = 1;
 
     @Override
     public void setData() {
@@ -43,10 +47,41 @@ public class DetailPerusahaanAct extends ProfilePerusahaanAct{
         textNothing.setText("Perusahaan ini belum mempunyai jasa untuk ditawarkan");
         textNama.setText(detailPerusahaan.getNamaLengkap());
         textAlamat.setText(detailPerusahaan.getAlamat());
-        textEmail.setText(detailPerusahaan.getEmail());
-        textPhone.setText(detailPerusahaan.getNoHp());
+        textEmail.setText(detailPerusahaan.getNoHp());
+        textPhone.setText(detailPerusahaan.getEmail());
         Uri localUri = Uri.parse(detailPerusahaan.getFoto());
         Picasso.with(this).load(localUri).into(imgUser);
+
+        btnTelfon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = "tel:" + detailPerusahaan.getNoHp();
+
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse(uri));
+                if (ActivityCompat.checkSelfPermission(DetailPerusahaanAct.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(DetailPerusahaanAct.this, new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+                    Toast.makeText(DetailPerusahaanAct.this, "Please, Click Again After You Allow It", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(intent);
+                }
+            }
+        });
+
+        btnMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{ detailPerusahaan.getEmail()});
+                email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                email.putExtra(Intent.EXTRA_TEXT, "Mail");
+
+                //need this to prompts email client only
+                email.setType("message/rfc822");
+
+                startActivity(Intent.createChooser(email, "Choose an Email client :"));
+            }
+        });
     }
 
     @Override
@@ -85,6 +120,7 @@ public class DetailPerusahaanAct extends ProfilePerusahaanAct{
 
     @Override
     public void onBackPressed() {
+        detailPerusahaan = null;
         finish();
     }
 

@@ -55,7 +55,7 @@ public class FormJasa extends AppCompatActivity {
     public static ModelJasa detailJasa;
     private ImageButton btnBack;
     private ProgressDialog progressDialog;
-    private EditText etNama, etGaji, etDesc, etSyarat, etKontrak;
+    private EditText etGaji;
     private Spinner spinKategori;
     private RelativeLayout btnSimpan, btnHapus;
     private UserSave userSave;
@@ -152,11 +152,7 @@ public class FormJasa extends AppCompatActivity {
     private void init() {
         rcFoto = (RecyclerView) findViewById(R.id.rc_foto);
         btnBack = (ImageButton) findViewById(R.id.back);
-        etNama = (EditText) findViewById(R.id.et_nama);
         etGaji = (EditText) findViewById(R.id.et_gaji);
-        etDesc = (EditText) findViewById(R.id.et_desc);
-        etSyarat = (EditText) findViewById(R.id.et_syarat);
-        etKontrak = (EditText) findViewById(R.id.et_kontrak);
         spinKategori = (Spinner) findViewById(R.id.spinner_kategori);
         btnSimpan = (RelativeLayout) findViewById(R.id.rl_update);
         btnHapus = (RelativeLayout) findViewById(R.id.rl_hapus);
@@ -186,10 +182,6 @@ public class FormJasa extends AppCompatActivity {
 
     private void setText() {
         if (detailJasa != null) {
-            etNama.setText(detailJasa.getNamaJasa());
-            etKontrak.setText(detailJasa.getKontrak());
-            etSyarat.setText(detailJasa.getSyarat());
-            etDesc.setText(detailJasa.getDetailJasa());
             etGaji.setText(detailJasa.getGaji());
             listKategori.removeAll(listKategori);
 
@@ -213,28 +205,11 @@ public class FormJasa extends AppCompatActivity {
     }
 
     private void cekEditText() {
-        String nama = etNama.getText().toString();
         String gaji = etGaji.getText().toString();
-        String kontrak = etKontrak.getText().toString();
-        String desc = etDesc.getText().toString();
-        String syarat = etSyarat.getText().toString();
 
-        if (nama.isEmpty() || gaji.isEmpty() || kontrak.isEmpty() || desc.isEmpty() || syarat.isEmpty()
-                || listKategori.get(spinKategori.getSelectedItemPosition()).equals("-") || listFotoJasa.size() == 1) {
-            if (nama.isEmpty()) {
-                etNama.setError(getResources().getString(R.string.error_data_kosong));
-            }
+        if (gaji.isEmpty() || listKategori.get(spinKategori.getSelectedItemPosition()).equals("-") || listFotoJasa.size() == 1) {
             if (gaji.isEmpty()) {
                 etGaji.setError(getResources().getString(R.string.error_data_kosong));
-            }
-            if (kontrak.isEmpty()) {
-                etKontrak.setError(getResources().getString(R.string.error_data_kosong));
-            }
-            if (desc.isEmpty()) {
-                etDesc.setError(getResources().getString(R.string.error_data_kosong));
-            }
-            if (syarat.isEmpty()) {
-                etSyarat.setError(getResources().getString(R.string.error_data_kosong));
             }
             if (listKategori.get(spinKategori.getSelectedItemPosition()).equals("-")) {
                 Snackbar.make(v, "Anda harus memilih salah satu kategori", Snackbar.LENGTH_LONG).show();
@@ -254,11 +229,11 @@ public class FormJasa extends AppCompatActivity {
             if (detailJasa != null) {
                 id = detailJasa.getId();
             } else {
-                id = System.currentTimeMillis() + "_" + nama;
+                id = System.currentTimeMillis() + "_" + gaji + "_" + listKategori.get(spinKategori.getSelectedItemPosition());
             }
 
-            ModelJasa dataJasa = new ModelJasa(id, nama, gaji, listKategori.get(spinKategori.getSelectedItemPosition())
-                    , desc, syarat, kontrak, userSave.getKEY_USER().getUid(), listFotoJasa);
+            ModelJasa dataJasa = new ModelJasa(id, gaji, listKategori.get(spinKategori.getSelectedItemPosition())
+                    , userSave.getKEY_USER().getUid(), listFotoJasa);
 
             for (int a = 0; a < listFotoJasa.size() - 1; a++) {
                 if (listTempFotoJasa.size() != 0) {

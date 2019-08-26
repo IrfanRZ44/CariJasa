@@ -7,38 +7,18 @@ import java.util.ArrayList;
  */
 
 public class ModelJasa {
-    String id, namaJasa, gaji, kategori, detailJasa, syarat, kontrak, uid;
+    String id, gaji, kategori, uid;
     ArrayList<String> foto = new ArrayList<String>();
 
     public ModelJasa() {
     }
 
-    public ModelJasa(String id, String namaJasa, String gaji, String kategori, String detailJasa, String syarat, String kontrak, String uid, ArrayList<String> foto) {
+    public ModelJasa(String id, String gaji, String kategori, String uid, ArrayList<String> foto) {
         this.id = id;
-        this.namaJasa = namaJasa;
         this.gaji = gaji;
         this.kategori = kategori;
-        this.detailJasa = detailJasa;
-        this.syarat = syarat;
-        this.kontrak = kontrak;
         this.uid = uid;
         this.foto = foto;
-    }
-
-    public ArrayList<String> getFoto() {
-        return foto;
-    }
-
-    public void setFoto(ArrayList<String> foto) {
-        this.foto = foto;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getId() {
@@ -47,14 +27,6 @@ public class ModelJasa {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNamaJasa() {
-        return namaJasa;
-    }
-
-    public void setNamaJasa(String namaJasa) {
-        this.namaJasa = namaJasa;
     }
 
     public String getGaji() {
@@ -73,27 +45,19 @@ public class ModelJasa {
         this.kategori = kategori;
     }
 
-    public String getDetailJasa() {
-        return detailJasa;
+    public String getUid() {
+        return uid;
     }
 
-    public void setDetailJasa(String detailJasa) {
-        this.detailJasa = detailJasa;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getSyarat() {
-        return syarat;
+    public ArrayList<String> getFoto() {
+        return foto;
     }
 
-    public void setSyarat(String syarat) {
-        this.syarat = syarat;
-    }
-
-    public String getKontrak() {
-        return kontrak;
-    }
-
-    public void setKontrak(String kontrak) {
-        this.kontrak = kontrak;
+    public void setFoto(ArrayList<String> foto) {
+        this.foto = foto;
     }
 }

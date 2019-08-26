@@ -1,19 +1,29 @@
 package com.exomatik.carijasa.Adapter;
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exomatik.carijasa.Model.ModelJasa;
+import com.exomatik.carijasa.Model.ModelUser;
 import com.exomatik.carijasa.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,9 +58,34 @@ public class RecyclerJasaPerusahaan extends RecyclerView.Adapter<RecyclerJasaPer
 
         String gaji = format.format(Long.parseLong(dataList.get(position).getGaji()));
 
-        holder.textNama.setText(dataList.get(position).getNamaJasa());
+        getNamaPerusahaan(dataList.get(position).getUid(), holder.textNama);
         holder.textGaji.setText(gaji);
         holder.textKategori.setText("Kategori : " + dataList.get(position).getKategori());
+    }
+
+    private void getNamaPerusahaan(final String id, final TextView textNama) {
+        FirebaseDatabase.getInstance()
+                .getReference("users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Iterator localIterator = dataSnapshot.getChildren().iterator();
+                            while (localIterator.hasNext()) {
+                                ModelUser data = (ModelUser) ((DataSnapshot) localIterator.next()).getValue(ModelUser.class);
+
+                                if (data.getUid().equals(id)){
+                                    textNama.setText(data.getNamaLengkap());
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     @Override

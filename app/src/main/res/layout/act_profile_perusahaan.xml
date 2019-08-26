@@ -125,10 +125,13 @@
                     android:gravity="center"
                     >
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_email_blue" />
+                        android:src="@drawable/ic_email_blue"
+                        android:id="@+id/btnMail"
+                        android:background="@drawable/btn_transparent_circle_gray"
+                        />
 
                     <TextView
                         android:id="@+id/text_phone"
@@ -138,6 +141,7 @@
                         android:layout_marginTop="@dimen/margin_standard"
                         android:fontFamily="@font/open_sans"
                         android:textColor="@color/putihGelap3"
+                        android:textAlignment="center"
                         android:textSize="@dimen/text_font" />
                 </LinearLayout>
 
@@ -149,10 +153,13 @@
                     android:gravity="center"
                     >
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_phone_blue" />
+                        android:src="@drawable/ic_phone_blue"
+                        android:id="@+id/btnTelfon"
+                        android:background="@drawable/btn_transparent_circle_gray"
+                        />
 
                     <TextView
                         android:id="@+id/text_email"
@@ -162,7 +169,9 @@
                         android:layout_marginTop="@dimen/margin_standard"
                         android:fontFamily="@font/open_sans"
                         android:textColor="@color/putihGelap3"
-                        android:textSize="@dimen/text_font" />
+                        android:textSize="@dimen/text_font"
+                        android:textAlignment="center"
+                        />
                 </LinearLayout>
             </LinearLayout>
 

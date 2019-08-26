@@ -20,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.NumberFormat;
@@ -108,6 +109,19 @@ public class ListPerusahaanTerdekatAct extends AppCompatActivity implements OnMa
 
             mMap.addMarker(new MarkerOptions().position(sydney).title(listPerusahaan.get(a).getNamaLengkap()));
         }
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for (int a = 0; a < listPerusahaan.size(); a++){
+                    if (marker.getTitle().equals(listPerusahaan.get(a).getNamaLengkap())){
+                        DetailPerusahaanAct.detailPerusahaan = listPerusahaan.get(a);
+                    }
+                }
+                startActivity(new Intent(ListPerusahaanTerdekatAct.this, DetailPerusahaanAct.class));
+                return false;
+            }
+        });
 
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13.0f));
 

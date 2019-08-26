@@ -11,7 +11,7 @@
     <string name="password">PASSWORD</string>
     <string name="jenis_akun">JENIS AKUN</string>
     <string name="akun_1">Perusahaan</string>
-    <string name="akun_2">Pekerja</string>
+    <string name="akun_2">Pengguna</string>
 
     <string name="text_no_account">Belum punya akun?</string>
     <string name="text_have_account">Sudah punya akun?</string>

@@ -6,8 +6,8 @@ android {
         applicationId "com.exomatik.carijasa"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -54,8 +54,5 @@ dependencies {
     //google location
     implementation 'com.google.android.gms:play-services:11.4.0'
 }
-
-
-
 
 apply plugin: 'com.google.gms.google-services'

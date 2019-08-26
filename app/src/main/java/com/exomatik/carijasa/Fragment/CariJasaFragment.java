@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exomatik.carijasa.Adapter.RecyclerJasaPerusahaan;
+import com.exomatik.carijasa.Activity.SplashActivity;
+import com.exomatik.carijasa.Adapter.RecyclerPerusahaan;
 import com.exomatik.carijasa.Featured.ItemClickSupport;
 import com.exomatik.carijasa.Featured.UserSave;
 import com.exomatik.carijasa.Model.ModelJasa;
 import com.exomatik.carijasa.Model.ModelUser;
 import com.exomatik.carijasa.Pekerja.DetailJasaAct;
+import com.exomatik.carijasa.Pekerja.DetailPerusahaanAct;
+import com.exomatik.carijasa.Pekerja.MainPekerjaAct;
+import com.exomatik.carijasa.Perusahaan.ProfilePerusahaanAct;
 import com.exomatik.carijasa.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -46,8 +51,8 @@ public class CariJasaFragment extends Fragment {
     private EditText etCari;
     private RecyclerView rcKategori;
     private TextView textNothing;
-    private RecyclerJasaPerusahaan adapterJasa;
-    private ArrayList<ModelJasa> listJasa = new ArrayList<ModelJasa>();
+    private RecyclerPerusahaan adapterJasa;
+    private ArrayList<ModelUser> listPerusahaan = new ArrayList<ModelUser>();
 
     public CariJasaFragment() {
     }
@@ -76,7 +81,7 @@ public class CariJasaFragment extends Fragment {
     }
 
     private void setAdapter() {
-        adapterJasa = new RecyclerJasaPerusahaan(listJasa, getContext());
+        adapterJasa = new RecyclerPerusahaan(listPerusahaan, getContext());
         LinearLayoutManager localLinearLayoutManager = new LinearLayoutManager(getContext(), 1, false);
         rcKategori.setLayoutManager(localLinearLayoutManager);
         rcKategori.setNestedScrollingEnabled(false);
@@ -85,31 +90,26 @@ public class CariJasaFragment extends Fragment {
 
     private void getData(final String nama) {
         FirebaseDatabase.getInstance()
-                .getReference("jasa")
+                .getReference("users")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Iterator localIterator1 = dataSnapshot.getChildren().iterator();
-                        listJasa.removeAll(listJasa);
+                        listPerusahaan.removeAll(listPerusahaan);
                         boolean cek = true;
-
                         if (dataSnapshot.exists()) {
-                            while (localIterator1.hasNext()) {
-                                DataSnapshot localDataSnapshot = (DataSnapshot) localIterator1.next();
-                                Iterator local = localDataSnapshot.getChildren().iterator();
-                                while (local.hasNext()) {
-                                    DataSnapshot dataDS = (DataSnapshot) local.next();
-                                    ModelJasa data = (ModelJasa) ((DataSnapshot) dataDS).getValue(ModelJasa.class);
+                            Iterator localIterator = dataSnapshot.getChildren().iterator();
+                            while (localIterator.hasNext()) {
+                                ModelUser data = (ModelUser) ((DataSnapshot) localIterator.next()).getValue(ModelUser.class);
 
-                                    if (nama == null){
-                                        listJasa.add(data);
+                                if (data.getJenisAkun().equals(getResources().getString(R.string.akun_1)) && data.getFoto() != null){
+                                    if (nama == null) {
+                                        listPerusahaan.add(data);
                                         adapterJasa.notifyDataSetChanged();
                                         cek = false;
-                                    }
-                                    else {
-                                        if (data.getNamaJasa().contains(nama)) {
-                                            listJasa.add(data);
+                                    } else {
+
+                                        if (data.getNamaLengkap().contains(nama)) {
+                                            listPerusahaan.add(data);
                                             adapterJasa.notifyDataSetChanged();
                                             cek = false;
                                         }
@@ -118,12 +118,10 @@ public class CariJasaFragment extends Fragment {
                             }
                         }
 
-
                         if (cek) {
                             adapterJasa.notifyDataSetChanged();
                             textNothing.setVisibility(View.VISIBLE);
-                        }
-                        else {
+                        } else {
                             textNothing.setVisibility(View.GONE);
                         }
                     }
@@ -148,10 +146,9 @@ public class CariJasaFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String cari = etCari.getText().toString();
 
-                if (cari.isEmpty()){
+                if (cari.isEmpty()) {
                     getData(null);
-                }
-                else {
+                } else {
                     getData(cari);
                 }
             }
@@ -165,12 +162,12 @@ public class CariJasaFragment extends Fragment {
         ItemClickSupport.addTo(rcKategori).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                getDataLocation(listJasa.get(position));
+                getDataLocation(listPerusahaan.get(position));
             }
         });
     }
 
-    private void getDataLocation(final ModelJasa dataJasa) {
+    private void getDataLocation(final ModelUser dataPerusahaan) {
         FirebaseDatabase.getInstance()
                 .getReference("users")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -180,10 +177,9 @@ public class CariJasaFragment extends Fragment {
                             Iterator localIterator = dataSnapshot.getChildren().iterator();
                             while (localIterator.hasNext()) {
                                 ModelUser localDataUser = (ModelUser) ((DataSnapshot) localIterator.next()).getValue(ModelUser.class);
-                                if (localDataUser.getUid().toString().equals(dataJasa.getUid())) {
-                                    DetailJasaAct.dataJasa = dataJasa;
-                                    DetailJasaAct.dataUser = localDataUser;
-                                    startActivity(new Intent(getActivity(), DetailJasaAct.class));
+                                if (localDataUser.getUid().toString().equals(dataPerusahaan.getUid())) {
+                                    DetailPerusahaanAct.detailPerusahaan = dataPerusahaan;
+                                    startActivity(new Intent(getActivity(), DetailPerusahaanAct.class));
                                 }
                             }
                         } else {

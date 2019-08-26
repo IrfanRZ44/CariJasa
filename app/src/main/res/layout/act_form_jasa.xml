@@ -59,58 +59,9 @@
             android:layout_marginTop="@dimen/margin_big"
             >
             <RelativeLayout
-                android:id="@+id/rl_et_nama"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width60">
-
-                <TextView
-                    android:id="@+id/text_edit_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:text="Nama Jasa"
-                    android:textColor="@color/hitamGray"
-                    android:textSize="@dimen/text_font" />
-
-                <ImageView
-                    android:id="@+id/img_margin_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_very_small"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_et_margin" />
-
-                <ImageView
-                    android:id="@+id/img_edit1"
-                    android:layout_width="@dimen/width30"
-                    android:layout_height="@dimen/width30"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/margin_standard"
-                    android:src="@drawable/ic_edit_gray" />
-
-                <EditText
-                    android:id="@+id/et_nama"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/img_margin_1"
-                    android:layout_below="@+id/text_edit_1"
-                    android:layout_toLeftOf="@+id/img_edit1"
-                    android:background="@android:color/transparent"
-                    android:digits="@string/digit_nama"
-                    android:hint="Nama"
-                    android:paddingLeft="@dimen/margin_standard"
-                    android:textColor="@color/hitam"
-                    android:textColorHint="@color/putihGelap3"
-                    android:textSize="@dimen/text_font" />
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/rl_et_gaji"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width60"
-                android:layout_below="@+id/rl_et_nama"
                 android:layout_marginTop="@dimen/margin_standard">
 
                 <TextView
@@ -118,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
-                    android:text="Gaji yang diberikan"
+                    android:text="Harga"
                     android:textColor="@color/hitamGray"
                     android:textSize="@dimen/text_font" />
 
@@ -157,161 +108,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl_et_desc"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/width100"
+                android:layout_height="@dimen/width60"
+                android:layout_marginTop="@dimen/margin_standard"
                 android:layout_below="@+id/rl_et_gaji"
-                android:layout_marginTop="@dimen/margin_standard">
-
-                <TextView
-                    android:id="@+id/text_edit_9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:text="Detail Jasa"
-                    android:textColor="@color/hitamGray"
-                    android:textSize="@dimen/text_font" />
-
-                <ImageView
-                    android:id="@+id/img_margin_9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_very_small"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_et_margin" />
-
-                <ImageView
-                    android:id="@+id/img_edit3"
-                    android:layout_width="@dimen/width30"
-                    android:layout_height="@dimen/width30"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/margin_standard"
-                    android:src="@drawable/ic_edit_gray" />
-
-                <EditText
-                    android:id="@+id/et_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/img_margin_9"
-                    android:layout_below="@+id/text_edit_9"
-                    android:layout_toLeftOf="@+id/img_edit3"
-                    android:background="@android:color/transparent"
-                    android:hint="Deskripsi Lengkap"
-                    android:lines="3"
-                    android:paddingLeft="@dimen/margin_standard"
-                    android:textColor="@color/hitam"
-                    android:textColorHint="@color/putihGelap3"
-                    android:textSize="@dimen/text_font" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_et_syarat"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width100"
-                android:layout_below="@+id/rl_et_desc"
-                android:layout_marginTop="@dimen/margin_standard">
-
-                <TextView
-                    android:id="@+id/text_edit_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:text="Persyaratan Jasa"
-                    android:textColor="@color/hitamGray"
-                    android:textSize="@dimen/text_font" />
-
-                <ImageView
-                    android:id="@+id/img_margin_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_very_small"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_et_margin" />
-
-                <ImageView
-                    android:id="@+id/img_edit10"
-                    android:layout_width="@dimen/width30"
-                    android:layout_height="@dimen/width30"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/margin_standard"
-                    android:src="@drawable/ic_edit_gray" />
-
-                <EditText
-                    android:id="@+id/et_syarat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/img_margin_10"
-                    android:layout_below="@+id/text_edit_10"
-                    android:layout_toLeftOf="@+id/img_edit10"
-                    android:background="@android:color/transparent"
-                    android:hint="Syarat"
-                    android:lines="3"
-                    android:paddingLeft="@dimen/margin_standard"
-                    android:textColor="@color/hitam"
-                    android:textColorHint="@color/putihGelap3"
-                    android:textSize="@dimen/text_font" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_et_kontrak"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width60"
-                android:layout_below="@+id/rl_et_syarat"
-                android:layout_marginTop="@dimen/margin_standard"
-                >
-
-                <TextView
-                    android:id="@+id/text_edit_11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:text="Lama Pengerjaan"
-                    android:textColor="@color/hitamGray"
-                    android:textSize="@dimen/text_font" />
-
-                <ImageView
-                    android:id="@+id/img_margin_11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_very_small"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_et_margin" />
-
-                <ImageView
-                    android:id="@+id/img_edit11"
-                    android:layout_width="@dimen/width30"
-                    android:layout_height="@dimen/width30"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/margin_standard"
-                    android:src="@drawable/ic_edit_gray" />
-
-                <EditText
-                    android:id="@+id/et_kontrak"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/img_margin_11"
-                    android:layout_below="@+id/text_edit_11"
-                    android:layout_toLeftOf="@+id/img_edit11"
-                    android:background="@android:color/transparent"
-                    android:inputType="number"
-                    android:hint="Per Bulan"
-                    android:paddingLeft="@dimen/margin_standard"
-                    android:textColor="@color/hitam"
-                    android:textColorHint="@color/putihGelap3"
-                    android:textSize="@dimen/text_font" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width60"
-                android:layout_marginTop="@dimen/margin_standard"
-                android:layout_below="@+id/rl_et_kontrak"
                 android:id="@+id/rl_et_kategori"
                 >
                 <TextView

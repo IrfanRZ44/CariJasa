@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfilePerusahaanAct extends AppCompatActivity{
-    public ImageButton btnLogout, btnEdit;
+    public ImageButton btnLogout, btnEdit, btnTelfon, btnMail;
     private UserSave userSave;
     public CircleImageView imgUser;
     public TextView textNama, textAlamat, textPhone, textEmail, textNothing;
@@ -100,6 +100,8 @@ public class ProfilePerusahaanAct extends AppCompatActivity{
         btnTambah = (Button) findViewById(R.id.btn_tambah);
         rcJasa = (RecyclerView) findViewById(R.id.rc_jasa);
         view = (View) findViewById(android.R.id.content);
+        btnTelfon = (ImageButton) findViewById(R.id.btnTelfon);
+        btnMail = (ImageButton) findViewById(R.id.btnMail);
 
         userSave = new UserSave(this);
 

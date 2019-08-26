@@ -19,6 +19,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.NumberFormat;
@@ -32,7 +33,7 @@ public class DetailJasaAct extends AppCompatActivity implements OnMapReadyCallba
     public static ModelJasa dataJasa;
     public static ModelUser dataUser;
     private ImageView back;
-    private TextView textNamaPerusahaan, textEmail, textKontak, textAlamat, textNamaJasa, textGaji, textDetail, textSyarat;
+    private TextView textNamaPerusahaan, textEmail, textKontak, textAlamat, textGaji;
     private GoogleMap mMap;
     private View v;
     private RecyclerView rcFoto;
@@ -63,7 +64,7 @@ public class DetailJasaAct extends AppCompatActivity implements OnMapReadyCallba
         ItemClickSupport.addTo(rcFoto).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                LihatFotoJasaAct.namaJasa = dataJasa.getNamaJasa();
+                LihatFotoJasaAct.namaJasa = dataUser.getNamaLengkap();
                 LihatFotoJasaAct.url = dataJasa.getFoto().get(position);
                 startActivity(new Intent(DetailJasaAct.this, LihatFotoJasaAct.class));
             }
@@ -76,10 +77,7 @@ public class DetailJasaAct extends AppCompatActivity implements OnMapReadyCallba
         textEmail = (TextView) findViewById(R.id.text_email);
         textKontak = (TextView) findViewById(R.id.text_kontak);
         textAlamat = (TextView) findViewById(R.id.text_alamat);
-        textNamaJasa = (TextView) findViewById(R.id.text_nama_jasa);
         textGaji = (TextView) findViewById(R.id.text_gaji);
-        textDetail = (TextView) findViewById(R.id.text_detail);
-        textSyarat = (TextView) findViewById(R.id.text_syarat);
         rcFoto = (RecyclerView) findViewById(R.id.rc_foto);
     }
 
@@ -88,15 +86,12 @@ public class DetailJasaAct extends AppCompatActivity implements OnMapReadyCallba
         textEmail.setText(dataUser.getEmail());
         textKontak.setText(dataUser.getNoHp());
         textAlamat.setText(dataUser.getAlamat());
-        textNamaJasa.setText(dataJasa.getNamaJasa());
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
         String gaji = format.format(Long.parseLong(dataJasa.getGaji()));
 
         textGaji.setText(gaji);
-        textDetail.setText(dataJasa.getDetailJasa());
-        textSyarat.setText(dataJasa.getSyarat());
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -128,7 +123,7 @@ public class DetailJasaAct extends AppCompatActivity implements OnMapReadyCallba
         String lat[] = replace.split(",");
         sydney = new LatLng(Float.parseFloat(lat[0]), Float.parseFloat(lat[1]));
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title(dataJasa.getNamaJasa()));
+        mMap.addMarker(new MarkerOptions().position(sydney).title(dataUser.getNamaLengkap()));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16.0f));
 
     }
