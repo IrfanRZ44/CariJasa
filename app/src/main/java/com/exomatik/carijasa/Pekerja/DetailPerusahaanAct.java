@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,7 +58,8 @@ public class DetailPerusahaanAct extends ProfilePerusahaanAct{
             public void onClick(View v) {
                 String uri = "tel:" + detailPerusahaan.getNoHp();
 
-                Intent intent = new Intent(Intent.ACTION_CALL);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "082192759551", null)));
                 intent.setData(Uri.parse(uri));
                 if (ActivityCompat.checkSelfPermission(DetailPerusahaanAct.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(DetailPerusahaanAct.this, new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
