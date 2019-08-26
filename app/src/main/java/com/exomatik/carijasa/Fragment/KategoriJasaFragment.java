@@ -40,12 +40,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * Created by IrfanRZ on 21/09/2018.
  */
 
-public class KategoriJasaFragment extends Fragment{
+public class KategoriJasaFragment extends Fragment {
     private View v;
     private UserSave userSave;
     private ProgressDialog progressDialog;
-    private Spinner spinnerKategori;
-    private ArrayList<String> listKategori = new ArrayList<String>();
+    //    private Spinner spinnerKategori;
+//    private ArrayList<String> listKategori = new ArrayList<String>();
     private RecyclerView rcKategori;
     private RecyclerJasaPerusahaan adapterJasa;
     private ArrayList<ModelJasa> listJasa = new ArrayList<ModelJasa>();
@@ -62,32 +62,32 @@ public class KategoriJasaFragment extends Fragment{
 
         init();
 
-        setSpinner();
+//        setSpinner();
 
         setAdapter();
-
+        getData();
         onClick();
 
         return v;
     }
 
     private void onClick() {
-        spinnerKategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setMessage(getResources().getString(R.string.progress_title1));
-                progressDialog.setTitle(getResources().getString(R.string.progress_text1));
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-                getData(listKategori.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        spinnerKategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                progressDialog = new ProgressDialog(getActivity());
+//                progressDialog.setMessage(getResources().getString(R.string.progress_title1));
+//                progressDialog.setTitle(getResources().getString(R.string.progress_text1));
+//                progressDialog.setCancelable(false);
+//                progressDialog.show();
+//                getData(listKategori.get(position));
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         ItemClickSupport.addTo(rcKategori).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -98,22 +98,28 @@ public class KategoriJasaFragment extends Fragment{
     }
 
     private void init() {
-        spinnerKategori = (Spinner) v.findViewById(R.id.spinner_kategori);
+//        spinnerKategori = (Spinner) v.findViewById(R.id.spinner_kategori);
         rcKategori = (RecyclerView) v.findViewById(R.id.rc_kategori);
         textNothing = (TextView) v.findViewById(R.id.text_nothing);
 
         userSave = new UserSave(getContext());
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage(getResources().getString(R.string.progress_title1));
+        progressDialog.setTitle(getResources().getString(R.string.progress_text1));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
-    private void setSpinner() {
-        listKategori = new DataKategori().DataKategori("-");
+//    private void setSpinner() {
+//        listKategori = new DataKategori().DataKategori(null);
+//
+//        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getContext(),
+//                R.layout.spinner_text_putih, listKategori);
+//        spinnerKategori.setAdapter(adapterSpinner);
+//    }
 
-        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getContext(),
-                R.layout.spinner_text_putih, listKategori);
-        spinnerKategori.setAdapter(adapterSpinner);
-    }
-
-    private void getData(final String kategori) {
+    private void getData() {
         FirebaseDatabase.getInstance()
                 .getReference("jasa")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,11 +138,9 @@ public class KategoriJasaFragment extends Fragment{
                                     DataSnapshot dataDS = (DataSnapshot) local.next();
                                     ModelJasa data = (ModelJasa) ((DataSnapshot) dataDS).getValue(ModelJasa.class);
 
-                                    if (data.getKategori().equals(kategori)) {
-                                        listJasa.add(data);
-                                        adapterJasa.notifyDataSetChanged();
-                                        cek = false;
-                                    }
+                                    listJasa.add(data);
+                                    adapterJasa.notifyDataSetChanged();
+                                    cek = false;
                                 }
                             }
                         }
