@@ -68,6 +68,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Pekerja.ListPerusahaanTerdekatAct"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Pekerja.ListJasa"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

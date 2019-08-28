@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.exomatik.carijasa.Featured.UserSave;
 import com.exomatik.carijasa.Model.ModelJasa;
 import com.exomatik.carijasa.Model.ModelUser;
 import com.exomatik.carijasa.Pekerja.DetailJasaAct;
+import com.exomatik.carijasa.Pekerja.ListJasa;
 import com.exomatik.carijasa.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -43,13 +45,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class KategoriJasaFragment extends Fragment {
     private View v;
     private UserSave userSave;
-    private ProgressDialog progressDialog;
-    //    private Spinner spinnerKategori;
-//    private ArrayList<String> listKategori = new ArrayList<String>();
-    private RecyclerView rcKategori;
-    private RecyclerJasaPerusahaan adapterJasa;
-    private ArrayList<ModelJasa> listJasa = new ArrayList<ModelJasa>();
-    private TextView textNothing;
+    private Button btn1, btn2, btn3, btn4;
 
     public KategoriJasaFragment() {
     }
@@ -61,142 +57,51 @@ public class KategoriJasaFragment extends Fragment {
         v = inflater.inflate(R.layout.frag_kategori, container, false);
 
         init();
-
-//        setSpinner();
-
-        setAdapter();
-        getData();
         onClick();
 
         return v;
     }
 
     private void onClick() {
-//        spinnerKategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                progressDialog = new ProgressDialog(getActivity());
-//                progressDialog.setMessage(getResources().getString(R.string.progress_title1));
-//                progressDialog.setTitle(getResources().getString(R.string.progress_text1));
-//                progressDialog.setCancelable(false);
-//                progressDialog.show();
-//                getData(listKategori.get(position));
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
-        ItemClickSupport.addTo(rcKategori).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                getDataLocation(listJasa.get(position));
+            public void onClick(View v) {
+                klikKategori(btn1.getText().toString());
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                klikKategori(btn2.getText().toString());
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                klikKategori(btn3.getText().toString());
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                klikKategori(btn4.getText().toString());
             }
         });
     }
 
+    private void klikKategori(String kategori){
+        ListJasa.namaKategori = kategori;
+        startActivity(new Intent(getActivity(), ListJasa.class));
+    }
+
     private void init() {
-//        spinnerKategori = (Spinner) v.findViewById(R.id.spinner_kategori);
-        rcKategori = (RecyclerView) v.findViewById(R.id.rc_kategori);
-        textNothing = (TextView) v.findViewById(R.id.text_nothing);
-
-        userSave = new UserSave(getContext());
-
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage(getResources().getString(R.string.progress_title1));
-        progressDialog.setTitle(getResources().getString(R.string.progress_text1));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        btn1 = (Button) v.findViewById(R.id.btn1);
+        btn2 = (Button) v.findViewById(R.id.btn2);
+        btn3 = (Button) v.findViewById(R.id.btn3);
+        btn4 = (Button) v.findViewById(R.id.btn4);
     }
 
-//    private void setSpinner() {
-//        listKategori = new DataKategori().DataKategori(null);
-//
-//        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getContext(),
-//                R.layout.spinner_text_putih, listKategori);
-//        spinnerKategori.setAdapter(adapterSpinner);
-//    }
-
-    private void getData() {
-        FirebaseDatabase.getInstance()
-                .getReference("jasa")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Iterator localIterator1 = dataSnapshot.getChildren().iterator();
-                        listJasa.removeAll(listJasa);
-                        boolean cek = true;
-
-                        if (dataSnapshot.exists()) {
-                            while (localIterator1.hasNext()) {
-                                DataSnapshot localDataSnapshot = (DataSnapshot) localIterator1.next();
-                                Iterator local = localDataSnapshot.getChildren().iterator();
-                                while (local.hasNext()) {
-                                    DataSnapshot dataDS = (DataSnapshot) local.next();
-                                    ModelJasa data = (ModelJasa) ((DataSnapshot) dataDS).getValue(ModelJasa.class);
-
-                                    listJasa.add(data);
-                                    adapterJasa.notifyDataSetChanged();
-                                    cek = false;
-                                }
-                            }
-                        }
-
-
-                        if (cek) {
-                            adapterJasa.notifyDataSetChanged();
-                            textNothing.setVisibility(View.VISIBLE);
-                        } else {
-                            textNothing.setVisibility(View.GONE);
-                        }
-                        progressDialog.dismiss();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Snackbar snackbar = Snackbar
-                                .make(v, getResources().getString(R.string.error) + databaseError.getMessage().toString(), Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                    }
-                });
-    }
-
-    private void getDataLocation(final ModelJasa dataJasa) {
-        FirebaseDatabase.getInstance()
-                .getReference("users")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Iterator localIterator = dataSnapshot.getChildren().iterator();
-                            while (localIterator.hasNext()) {
-                                ModelUser localDataUser = (ModelUser) ((DataSnapshot) localIterator.next()).getValue(ModelUser.class);
-                                if (localDataUser.getUid().toString().equals(dataJasa.getUid())) {
-                                    DetailJasaAct.dataJasa = dataJasa;
-                                    DetailJasaAct.dataUser = localDataUser;
-                                    startActivity(new Intent(getActivity(), DetailJasaAct.class));
-                                }
-                            }
-                        } else {
-                            Toast.makeText(getContext(), getResources().getString(R.string.error_update), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(getContext(), databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void setAdapter() {
-        adapterJasa = new RecyclerJasaPerusahaan(listJasa, getContext());
-        LinearLayoutManager localLinearLayoutManager = new LinearLayoutManager(getContext(), 1, false);
-        rcKategori.setLayoutManager(localLinearLayoutManager);
-        rcKategori.setNestedScrollingEnabled(false);
-        rcKategori.setAdapter(adapterJasa);
-    }
 }
